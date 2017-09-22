@@ -14,3 +14,9 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route:resource('teachers', 'TeacherController');
+Route:resource('subjects', 'SubjectController');
+Route:resource('bibliographies', 'BibliographyController');
+Route:resource('weeks', 'WeekController');
+Route:resource('contents', 'ContentController');
