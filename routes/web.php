@@ -12,11 +12,12 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('web/index');
 });
 
-Route:resource('teachers', 'TeacherController');
-Route:resource('subjects', 'SubjectController');
-Route:resource('bibliographies', 'BibliographyController');
-Route:resource('weeks', 'WeekController');
-Route:resource('contents', 'ContentController');
+Route::resource('teachers', 'web\TeacherController');
+Route::resource('courses', 'web\CourseController');
+Route::get('courses/{id}/silabo', 'web\CourseController@showSilabo');
+Route::resource('bibliographies', 'web\BibliographyController');
+Route::resource('weeks', 'web\WeekController');
+Route::resource('contents', 'web\ContentController');
