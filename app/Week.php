@@ -6,15 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Week extends Model
 {
-    protected $fillable =  ['number', 'content', 'subjects_id'];
+    protected $fillable =  [
+        'number', 'previous_tasks', 'evaluation_indicators', 
+        'evaluation_criterial', 'learning_activity', 'actitudinal', 
+        'procedimental', 'conceptual','terminal_capacity', 'course_id'];
 
-    public function subject()
+    public function course()
     {
-        return $this->belongsTo('App\Subject');
-    }
-
-    public function contents()
-    {
-        return $this->hasMany('App\Content');
+        return $this->belongsTo('App\Course');
     }
 }
