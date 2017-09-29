@@ -7,12 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 class Bibliography extends Model
 {
     protected $fillable =  [
-        'title', 'edition', 'country', 'editorial', 
-        'year', 'number_page', 'subject_id'
+        'author', 'title', 'edition', 'country', 'editorial', 
+        'year', 'pages_number', 'course_id'
     ];
 
-    public function subject()
+    public function course()
     {
-        return $this->belongsTo('App\Subject');
+        return $this->belongsTo('App\Course');
     }
 }
