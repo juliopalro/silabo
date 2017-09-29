@@ -17,8 +17,16 @@ class WeeksTableSeeder extends Seeder
         for ($i=1; $i <= 20; $i++) { 
             for ($x=1; $x <=10 ; $x++) { 
                 DB::table('weeks')->insert([
-                    'number' => 'semana '.$x,
-                    'subject_id' => $i
+                    'number' => $x,
+                    'terminal_capacity' =>  $faker->text($maxNbChars = 50),
+                    'conceptual' =>  $faker->text($maxNbChars = 50),
+                    'procedimental' =>  $faker->text($maxNbChars = 50),
+                    'actitudinal' =>  $faker->text($maxNbChars = 50),
+                    'learning_activity' =>  $faker->text($maxNbChars = 50),
+                    'evaluation_criterial' =>  $faker->text($maxNbChars = 50),
+                    'evaluation_indicators' =>  $faker->text($maxNbChars = 50),
+                    'previous_tasks' =>  $faker->text($maxNbChars = 50),
+                    'course_id' => rand(1, 40)
                 ]);
             }
         }

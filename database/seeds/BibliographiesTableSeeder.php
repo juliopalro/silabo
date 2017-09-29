@@ -23,8 +23,8 @@ class BibliographiesTableSeeder extends Seeder
                 'country' => $faker->country,
                 'editorial' => $faker->streetName,
                 'year' => $faker->year($max = 'now'),
-                'number_page' => $faker->numberBetween($min = 100, $max = 900),
-                'subject_id' => $i
+                'pages_number' => $faker->numberBetween($min = 100, $max = 900),
+                'course_id' => rand(1, 40)
             ]);
         }
     }
