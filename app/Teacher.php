@@ -6,10 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Teacher extends Model
 {
-    protected $fillable =  ['name', 'last_name'];
+    protected $fillable =  ['code', 'name' , 'last_name', 'position'];
 
-    public function subjects()
+    public function courses()
     {
-        return $this->hasMany('App\Subject');
+        return $this->hasMany('App\Course');
     }
 }
