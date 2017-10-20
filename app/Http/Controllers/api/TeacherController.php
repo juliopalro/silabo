@@ -1,13 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\web;
+namespace App\Http\Controllers\api;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Bibliography;
-use App\Course;
 
-class BibliographyController extends Controller
+use App\Teacher;
+class TeacherController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +15,9 @@ class BibliographyController extends Controller
      */
     public function index()
     {
-        //
+        $data = Teacher::take(5)->orderBy('id','desc')->get();
+        #$data = Teacher::all();
+        return response()->json(['teachers' => $data]);
     }
 
     /**
@@ -24,10 +25,9 @@ class BibliographyController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($id)
+    public function create()
     {
-        $data['course'] = Course::find($id);
-        return view('web/bibliography/create', $data);
+        //
     }
 
     /**
@@ -38,13 +38,7 @@ class BibliographyController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->all();
-        if( Bibliography::create($data) ){
-            return redirect('courses/'.$data['course_id'].'/silabo');
-        }
-        else{
-            return 'Error en el registro';
-        }
+        //
     }
 
     /**

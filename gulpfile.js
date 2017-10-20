@@ -1,44 +1,82 @@
+// Gulp config file
+
 var gulp = require('gulp');
-var uglify = require('gulp-uglify');//javascript
-var concat = require('gulp-concat'); //concatenar los archivos
-var sass = require('gulp-sass');//compilar SASS
-var rename = require('gulp-rename'); //renombrar archivos
-var cssmin = require('gulp-cssmin'); //minificar CSS
-var watch = require('gulp-watch'); //ejecutarse al guardar los cambios
+var concat = require('gulp-concat');
+var sass = require('gulp-sass');
+var ts = require('gulp-typescript');
+var runSequence = require('run-sequence');
+var minify = require('gulp-minify');
+var rename = require('gulp-rename');
 
-gulp.task('bundle', function() {
-    gulp.src('resources/assets/sass/*.css')
-    .pipe(concat('bundle.css'))
-    .pipe(cssmin())
-    .pipe(gulp.dest('public/css'));
-
-    gulp.src([
-        'resources/assets/js/jquery.js', 
-        'resources/assets/js/foundation.js',
-        'resources/assets/js/angular.js',
-        'resources/assets/js/angular-resource.js',
-        'resources/assets/js/angular-route.js'
-        ])
-    .pipe(concat('bundle.js'))
-    .pipe(uglify())
-    .pipe(gulp.dest('public/js'));
-});
-
-gulp.task('app-sass', function() {
-    gulp.src('./resources/assets/sass/app.sass')
-    .pipe(sass().on('error', sass.logError))
-    .pipe(cssmin())
+// task for sass
+gulp.task('sass', function(){
+  return gulp.src('./resources/assets/sass/app.sass')
+    .pipe(sass())
     .pipe(gulp.dest('./public/css'));
 });
-gulp.task('app-js', function() {
-    gulp.src('./resources/assets/js/app.js')
-    .pipe(uglify())
-    .pipe(gulp.dest('./public/js'));
+
+// task for js
+gulp.task("js", function(){
+  return gulp.src('./resources/assets/js/*.js')
+  .pipe(minify())
+  .pipe(rename('bundle.js'))
+  .pipe(gulp.dest('./public/js'));
 });
 
-gulp.task('watch-app', function() {
-    gulp.watch('./resources/assets/js/*.js', ['app-js']);
-    gulp.watch('./resources/assets/sass/*.sass', ['app-sass']);
+// copy of libraries fro the proyect angular
+gulp.task("copy-libraries", function(){
+  return gulp.src([
+      'core-js/client/**',
+      'systemjs/dist/system.src.js',
+      'reflect-metadata/**',
+      'rxjs/**',
+      'zone.js/dist/**',
+      '@angular/**',
+      'jquery/dist/jquery.*js',
+      'bootstrap/dist/js/bootstrap.*js',
+      '@angular2-material/**/*',
+      'primeng/**/**/*',
+      'angular-search-list/*',
+      'chart.js/dist/*',
+      '!/**/*.ts'
+    ],
+    {cwd: "node_modules/**"})
+  .pipe(gulp.dest('./public/libraries'));
 });
 
-gulp.task('default', ['app-sass', 'app-js', 'bundle']);
+// copy all html of angular
+gulp.task("copy-html", function(){
+  return gulp.src('./resources/app/**/*.html')
+  .pipe(gulp.dest('./public/app'));
+});
+
+// compile typescript
+gulp.task('tsc-js', function(){
+  return gulp.src('./resources/app/**/*.ts')
+    .pipe(ts())
+    .pipe(gulp.dest('./public/app'));
+});
+
+// Watchers
+gulp.task('sass:watch', function () {
+  gulp.watch('./resources/assets/sass/*.sass', ['sass']);
+});
+gulp.task('js:watch', function () {
+  gulp.watch('./resources/assets/js/*.js', ['js']);
+});
+gulp.task('copy-html:watch', function () {
+  gulp.watch('resources/app/**/*.html',{cwd: './'}, ['copy-html']);
+});
+gulp.task('tsc-js:watch', function () {
+  gulp.watch('resources/app/**/*.ts',{cwd: './'}, ['tsc-js']);
+});
+gulp.task('watch', function () {
+  gulp.watch('./resources/assets/sass/*.sass', ['sass']);
+  gulp.watch('./resources/assets/js/*.js', ['js']);
+  gulp.watch('resources/app/**/*.html',{cwd: './'}, ['copy-html']);
+  gulp.watch('resources/app/**/*.ts',{cwd: './'}, ['tsc-js']);
+});
+// Sequience Tasks
+gulp.task('start', function (cb) {
+    runSequence('copy-libraries', 'tsc-js', 'copy-html', 'js', 'sass', cb);
+});

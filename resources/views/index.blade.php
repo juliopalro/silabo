@@ -17,7 +17,6 @@
   </head>
   <!-- 3. monitor de la apliación -->
   <body>
-    <menu-system></menu-system>
-    <silabo>Cargando...</silabo>
+    <my-app>Cargando...</my-app>
   </body>
 </html>

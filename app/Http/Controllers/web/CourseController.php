@@ -25,9 +25,9 @@ class CourseController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id)
     {
-        $data['teachers'] = Teacher::all();
+        $data['teacher'] = Teacher::find($id);
         return view('web/course/create', $data);
     }
 

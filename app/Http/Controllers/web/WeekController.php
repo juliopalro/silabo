@@ -4,6 +4,8 @@ namespace App\Http\Controllers\web;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Week;
+use App\Course;
 
 class WeekController extends Controller
 {
@@ -22,9 +24,10 @@ class WeekController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id)
     {
-        //
+        $data['course'] = Course::find($id);
+        return view('web/week/create', $data);
     }
 
     /**
@@ -35,7 +38,13 @@ class WeekController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+        if( Week::create($data) ){
+            return redirect('courses/'.$data['course_id'].'/silabo');
+        }
+        else{
+            return 'Error en el registro';
+        }
     }
 
     /**

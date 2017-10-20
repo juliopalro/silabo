@@ -24,7 +24,7 @@
               <li><p><a href="/courses/{{$course->id}}">{{$course->name}}</a></p></li>
               @endforeach
             </ul>
-            <a class="button" href="courses/create">Agregar Curso</a>
+            <a class="button" href="/courses/create/{{$teacher->id}}">Agregar Curso</a>
           </div>
         </li>
       </ul>

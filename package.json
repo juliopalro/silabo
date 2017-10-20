@@ -1,33 +1,47 @@
 {
   "name": "silabo",
-  "version": "1.0.0",
-  "description": "Con la ayuda de Laravel 5.5 se desarrollara un proyecto para realizar un administrador de silabus el mismo que se presentara en el taller de diseño web, de la universidad de UPLA.",
-  "main": "gulpfile.js",
-  "directories": {
-    "test": "tests"
-  },
+  "version": "0.0.1",
+  "owner": "UPLA - Ing. de Sistemas y computación",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node_modules/.bin/gulp start",
+    "watch": "node_modules/.bin/gulp watch"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/juliopalro/silabo.git"
+  "license": "MIT",
+  "dependencies": {
+    "@angular/animations": "4.1.3",
+    "@angular/common": "4.1.3",
+    "@angular/compiler": "4.1.3",
+    "@angular/core": "4.1.3",
+    "@angular/forms": "4.1.3",
+    "@angular/http": "4.1.3",
+    "@angular/platform-browser": "4.1.3",
+    "@angular/platform-browser-dynamic": "4.1.3",
+    "@angular/router": "4.1.3",
+    "@angular/upgrade": "4.1.3",
+    "angular-in-memory-web-api": "0.3.2",
+    "angulartics2": "^2.2.2",
+    "bootstrap": "^3.3.6",
+    "chart.js": "^2.6.0",
+    "core-js": "^2.4.1",
+    "primeng": "^4.0.1",
+    "reflect-metadata": "^0.1.9",
+    "rxjs": "5.4.0",
+    "systemjs": "0.20.12",
+    "typescript": "2.2.0",
+    "typings": "^1.5.0",
+    "zone.js": "^0.8.5"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/juliopalro/silabo/issues"
-  },
-  "homepage": "https://github.com/juliopalro/silabo#readme",
   "devDependencies": {
+    "concurrently": "^3.3.0",
     "gulp": "^3.9.1",
     "gulp-concat": "^2.6.1",
-    "gulp-cssmin": "^0.2.0",
     "gulp-minify": "^1.0.0",
     "gulp-rename": "^1.2.2",
     "gulp-sass": "^3.1.0",
-    "gulp-uglify": "^3.0.0",
-    "gulp-watch": "^4.3.11"
+    "gulp-typescript": "^3.2.2",
+    "node-sass": "^4.5.3",
+    "run-sequence": "^1.2.2",
+    "sass": "^1.0.0-beta.2",
+    "typings": "^2.1.0"
   }
 }

@@ -6,16 +6,18 @@
 
   <h1 class="text-center">Silabo del curso</h1>
   <style>
-    table.weeks, table.bibliographies{
+    table.weeks{
       width: 3000px;
     }
   </style>
   @if( count($course) == 1 )
   <div class="row medium-centered">
-    <h5>Docente</h5>
-    <p><b>Nombres:</b> {{$course->teacher->name}}</p>
-    <p><b>Apellidos:</b> {{$course->teacher->last_name}}</p>
-    <hr>
+    <div class="callout secondary">
+      <h5>Docente</h5>
+      <p><b>Nombres:</b> {{$course->teacher->name}}</p>
+      <p><b>Apellidos:</b> {{$course->teacher->last_name}}</p>
+    </div>
+    
     <h5>Semanas <small><a class="button" href="/weeks/create/{{$course->id}}"><i class="fa fa-plus"></i> Agregar</a></small></h5>
     <div class="table-scroll">
       <table class="weeks">
@@ -49,35 +51,14 @@
         </tbody>
       </table>
     </div>
-    <hr>
-    <h5>Bibliografía <small><a class="button" href="/bibliographies/create/{{$course->id}}"><i class="fa fa-plus"></i> Agregar</a></small></h5>
-    <div class="table-scroll">
-      <table class="bibliographies">
-        <thead>
-          <tr>
-            <th>Título del libro</th>
-            <th>Autor</th>
-            <th>Edición</th>
-            <th>country</th>
-            <th>Editorial</th>
-            <th>Año</th>
-            <th>Número de páginas</th>
-          </tr>
-        </thead>
-        <tbody>
-          @foreach( $course->bibliographies as $bibliography )
-          <tr>
-            <td>{{$bibliography->title}}</td>
-            <td>{{$bibliography->author}}</td>
-            <td>{{$bibliography->edition}}</td>
-            <td>{{$bibliography->country}}</td>
-            <td>{{$bibliography->editorial}}</td>
-            <td>{{$bibliography->year}}</td>
-            <td>{{$bibliography->page_numbers}}</td>
-          </tr>
+    
+    <div class="callout primary">
+      <h5>Bibliografía</h5>
+        <ul>
+          @foreach( $course->bibliographies as $bibliograpy )
+          <li>{{$bibliograpy->title}} - {{$bibliograpy->author}} - {{$bibliograpy->edition}}</li>
           @endforeach
-        </tbody>
-      </table>
+        </ul>
     </div>
 
   </div>

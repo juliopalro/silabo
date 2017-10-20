@@ -13,21 +13,17 @@
     </div>
   </div>
 
-  @foreach ( $teachers as $teacher)
-  <div class="row small-centered">
-    <div class="columns medium-8">
-      <div class="columns medium-8">
-        <p>{{$teacher->name.' '.$teacher->last_name}} </p>
-      </div>
-      <div class="columns medium-4 text-center">
-        <a class="button" href="teachers/{{$teacher->id}}">
-          <i class="fa fa-eye"></i> ver
-        </a>
-        <a class="button" href="teachers/{{$teacher->id}}/edit">
-          <i class="fa fa-pencil"></i> editar
-        </a>
-      </div>
-    </div>
-  </div>
-  @endforeach
+  <table>
+    <thead>
+      <tr>
+        <th>Nombre completo</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr v-for="teacher in teachers">
+        <td>@{{teacher.name}}</td>
+      </tr>
+    </tbody>
+  </table>
+
 @endsection
