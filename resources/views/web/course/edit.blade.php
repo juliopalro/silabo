@@ -4,16 +4,17 @@
 
 @section('content')
 
-<h1 class="text-center">Edición de curso</h1>
+<div class="cell">
+  <h1 class="text-center">Edición de curso</h1>
+</div>
 
-<div class="row">
+<div class="cell">
     <form method="post" action="/courses/{{$course->id}}" accept-charset="UTF-8" data-abide novalidate>
 
       {{ method_field('PUT') }}
       {{ csrf_field() }}
 
       <fieldset class="columns large-12">
-        <legend>Generales</legend>
         <div class="columns large-12">
           <label for="code">Código
             <input type="text" id="code" name="code" placeholder="Código del profesor" 
@@ -67,9 +68,9 @@
       </fieldset>
 
       <div class="columns medium-12 text-right">
-        <button type="submit" class="button">Actualizar</button>
-        <a href="/courses/{{$course->id}}" class="button alert">Ir a la vista</a>
-        <a href="/courses" class="button alert">Ir a la lista</a>
+        <button type="submit" class="button"><i class="fa fa-save"></i> Actualizar</button>
+        <a href="/courses/{{$course->id}}" class="button"><i class="fa fa-eye"></i> Ir a la vista</a>
+        <a href="/courses" class="button"><i class="fa fa-list"></i> Ir a la lista</a>
       </div>
 
     </form>

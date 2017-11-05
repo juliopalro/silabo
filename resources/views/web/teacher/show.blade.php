@@ -4,26 +4,26 @@
 
 @section('content')
 
-  <h1 class="text-center">Vista profesor</h1>
+  <div class="cell">
+    <h1>Vista profesor</h1>
+  </div>
 
   @if( count($teacher) == 1 )
-  <div class="row medium-centered">
+  <div class="cell">
     <div class="columns medium-12">
-      <h2><b>Profesor</b></h2>
-      <a href="/teachers/{{$teacher->id}}/edit" class="button"><i class="fa fa-pencil"></i> Actualizar</a>
-      <p><b>Nombres:</b> {{$teacher->name}}</p>
-      <p><b>Apellidos:</b> {{$teacher->last_name}}</p>
+      <h2><small><b>Profesor: </b></small>{{$teacher->name}} {{$teacher->last_name}} <a href="/teachers/{{$teacher->id}}/edit" class="button"><i class="fa fa-pencil"></i> Editar</a></h2>
     </div>
     <div class="columns medium-12">
       <ul class="accordion" data-accordion data-allow-all-closed="true">
-        <li class="accordion-item" data-accordion-item>
-          <a href="#" class="accordion-title">Cursos</a>
+        <li class="accordion-item is-active" data-accordion-item>
+          <a href="#" class="accordion-title" ><i class="fa fa-list"></i> Lista de Cursos Asociados:</a>
           <div class="accordion-content" data-tab-content>
-            <ul>
+            <ul class="fa-ul">
               @foreach( $teacher->courses as $course )
-              <li><p><a href="/courses/{{$course->id}}">{{$course->name}}</a></p></li>
+              <li><a href="/courses/{{$course->id}}"><i class="fa-li fa fa-check-square"></i> {{$course->name}}</a></li>
               @endforeach
             </ul>
+            <br>
             <a class="button" href="/courses/create/{{$teacher->id}}">Agregar Curso</a>
           </div>
         </li>
@@ -32,7 +32,7 @@
   </div>
 
   @else
-  <div class="row">
+  <div class="cell">
     <div class="alert">Profesor no encontrado</div>
   </div>
   @endif

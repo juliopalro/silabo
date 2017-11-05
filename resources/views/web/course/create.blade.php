@@ -4,15 +4,17 @@
 
 @section('content')
 
-  <h1 class="text-center">Creación de un nuevo curso</h1>
+  <div class="cell">
+    <h1 class="text-center">Creación de un nuevo curso</h1>
+  </div>
+  
 
-  <div class="row">
+  <div class="cell">
     <form method="post" action="/courses" accept-charset="UTF-8" data-abide novalidate>
 
       {{ csrf_field() }}
 
       <fieldset class="columns large-12">
-        <legend>Generales</legend>
         <div class="columns large-12">
           <label for="code">Código
             <input type="text" id="code" name="code" placeholder="Código del profesor">
@@ -58,8 +60,7 @@
       </fieldset>
 
       <div class="columns medium-12 text-right">
-        <button type="submit" class="button">Crear</button>
-        <a href="/courses" class="button alert">Volver a la lista</a>
+        <button type="submit" class="button"><i class="fa fa-save"></i> Crear</button>
       </div>
 
     </form>

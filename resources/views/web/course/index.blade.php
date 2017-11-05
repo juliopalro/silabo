@@ -4,30 +4,31 @@
 
 @section('content')
 
-  <div class="row">
-    <div class="columns">
-      <h1 class="text-center">Lista de cursos</h1>
-      <a class="button" href="courses/create">
-        <i class="fa fa-plus"></i> Crear curso
-      </a>
-    </div>
+
+  <div class="cell">
+    <h1>Lista de cursos</h1>
   </div>
 
-  @foreach ( $courses as $course)
-  <div class="row small-centered">
-    <div class="columns medium-12">
-      <div class="columns medium-8">
-        <p>{{$course->name.' '.$course->last_name}} </p>
-      </div>
-      <div class="columns medium-4 text-center">
-        <a class="button" href="courses/{{$course->id}}">
-          <i class="fa fa-eye"></i> ver
-        </a>
-        <a class="button" href="courses/{{$course->id}}/edit">
-          <i class="fa fa-pencil"></i> editar
-        </a>
-      </div>
-    </div>
+  <div class="cell">
+    <table class="radius bordered shadow">
+      <thead>
+        <tr>
+          <th class="text-center">Nombre del Curso</th>
+          <th width="30%"></th>
+        </tr>
+      </thead>
+      <tbody>
+        @foreach( $courses as $course )
+        <tr>
+          <td>{{ $course->name }}</td>
+          <td>
+            <a href="courses/{{$course->id}}" class="button"><i class="fa fa-eye"></i> ver</a>
+            <a href="courses/{{$course->id}}/edit" class="button"><i class="fa fa-pencil"></i> Editar</a>
+          </td>
+        </tr>
+        @endforeach
+      </tbody>
+    </table>
   </div>
-  @endforeach
+
 @endsection

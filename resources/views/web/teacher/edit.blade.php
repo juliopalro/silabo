@@ -4,9 +4,11 @@
 
 @section('content')
 
-<h1 class="text-center">Edición de profesor</h1>
+<div class="cell">
+  <h1>Vista de edición</h1>
+</div>
 
-<div class="row align-center">
+<div class="cell">
   <form method="post" action="/teachers/{{$teacher->id}}" accept-charset="UTF-8" data-abide novalidate>
 
     {{ method_field('PUT') }}
@@ -53,9 +55,9 @@
     </fieldset>
 
     <div class="columns medium-12 text-right">
-      <button type="submit" class="button">Actualizar</button>
-      <a href="/teachers/{{$teacher->id}}" class="button alert">Ir a la vista</a>
-      <a href="/teachers" class="button alert">Ir a la lista</a>
+      <button type="submit" class="button"><i class="fa fa-save"></i> Guardar</button>
+      <a href="/teachers/{{$teacher->id}}" class="button"><i class="fa fa-eye"></i> Ir a la vista del profesor</a>
+      <a href="/teachers" class="button"><i class="fa fa-list"></i> Ir a la lista de profesores</a>
     </div>
 
   </form>

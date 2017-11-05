@@ -4,9 +4,11 @@
 
 @section('content')
 
-  <h1 class="text-center">Creación de un nuevo profesor</h1>
+  <div class="cell">
+     <h1>Vista de creación de un profesor</h1>
+  </div>
 
-  <div class="row">
+  <div class="cell">
     <form method="post" action="/teachers" accept-charset="UTF-8" data-abide novalidate>
 
       {{ csrf_field() }}
@@ -48,8 +50,8 @@
       </fieldset>
 
       <div class="columns medium-12 text-right">
-        <button type="submit" class="button">Crear</button>
-        <a href="/teachers" class="button alert">Volver a la lista</a>
+        <button type="submit" class="button"><i class="fa fa-save"></i> Crear</button>
+        <a href="/teachers" class="button"><i class="fa fa-list"></i> Volver a la lista</a>
       </div>
 
     </form>

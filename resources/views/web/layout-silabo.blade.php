@@ -8,18 +8,20 @@
 
     <title>@yield('title')</title>
     
-    <link rel="stylesheet" href="{{ asset('css/bundle.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/foundation.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/font-awesome.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/app.css') }}">
 
 </head>
 <body>
     @include('web/top-bar')
     
-    <div id="crud">
-    @yield('content')
-
+    <div id="layout" class="grid-x padding-1">
+        @yield('content')
     </div>
+    <script src="{{ asset('assets/js/vendor/jquery.js') }}"></script>
+    <script src="{{ asset('assets/js/vendor/foundation.js') }}"></script>
+    <script src="{{ asset('assets/js/app.js') }}"></script>
 
-    <script src="{{ asset('js/bundle.js') }}"></script>
 </body>
 </html>

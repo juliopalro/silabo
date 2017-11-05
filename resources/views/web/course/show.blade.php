@@ -4,26 +4,25 @@
 
 @section('content')
 
-  <h1 class="text-center">Vista curso</h1>
-
+  <div class="cell">
+   <h1>Vista curso</h1>
+  </div>
   @if( count($course) == 1 )
-  <div class="row medium-centered">
+  <div class="cell">
     <div class="columns medium-12">
-      <h2><b>Curso</b></h2>
-      <a href="/courses/{{$course->id}}/edit" class="button"><i class="fa fa-pencil"></i> Actualizar</a>
+      <h2><small><b>Curso: </b></small>{{$course->name}} <a href="/courses/{{$course->id}}/edit" class="button"><i class="fa fa-pencil"></i> Editar</a></h2>
       <p><b>Código:</b>{{$course->code}}</p>
-      <p><b>Nombre de la unidad didactica:</b>{{$course->name}}</p>
       <p><b>Número de créditos:</b>{{$course->credit_number}}</p>
       <p><b>Horas por semana:</b>{{$course->weekly_hours}}</p>
       <p><b>Número de semanas:</b> {{count($course->weeks)}}</p>
       <p><b>Horas semestral:</b> {{floatval(count($course->weeks))*floatval($course->weekly_hours)}}</p>
       <p><b>Docente asignado:</b> {{$course->teacher->name.' '.$course->teacher->last_name}}</p>
-      <p><a class="button success" href="/courses/{{$course->id}}/silabo">Ver el silabo</a></p>
+      <p><a class="button" href="/courses/{{$course->id}}/silabo"><i class="fa fa-building"></i> Ver el silabo</a></p>
     </div>
   </div>
 
   @else
-  <div class="row">
+  <div class="cell">
     <div class="alert">Curso no encontrado</div>
   </div>
   @endif

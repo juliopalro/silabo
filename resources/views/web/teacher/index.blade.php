@@ -4,26 +4,37 @@
 
 @section('content')
 
-  <div class="row">
-    <div class="columns">
-      <h1 class="text-center">Lista de profesores</h1>
+  <div class="cell">
+    <h1>Lista de profesores 
       <a class="button" href="teachers/create">
-        <i class="fa fa-plus"></i> Crear profesor
+        <i class="fa fa-plus"></i> Nuevo profesor
       </a>
-    </div>
+    </h1>
   </div>
 
-  <table>
-    <thead>
-      <tr>
-        <th>Nombre completo</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr v-for="teacher in teachers">
-        <td>@{{teacher.name}}</td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="cell">
+    <table class="radius bordered shadow">
+      <thead>
+        <tr>
+          <th class="text-center" width="30%">Nombre completo</th>
+          <th class="text-center">Cursos</th>
+        </tr>
+      </thead>
+      <tbody>
+        @foreach( $teachers as $teacher )
+        <tr>
+          <td><a href="teachers/{{$teacher->id}}">{{ $teacher->name }} <i class="fa fa-eye"></i></a></td>
+          <td>
+            <ul class="fa-ul">
+            @foreach( $teacher->courses as $course )
+              <li><a href="/courses/{{$course->id}}"><i class="fa-li fa fa-check-square"></i> {{$course->name}}</a></li>
+            @endforeach
+            </ul>
+          </td>
+        </tr>
+        @endforeach
+      </tbody>
+    </table>
+  </div>
 
 @endsection

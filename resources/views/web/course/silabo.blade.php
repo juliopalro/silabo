@@ -3,20 +3,23 @@
 @section('title','Silabo del curso')
 
 @section('content')
-
-  <h1 class="text-center">Silabo del curso</h1>
+  
+  <div class="cell">
+    <h1>Silabo del curso</h1>
+  </div>
+  
   <style>
     table.weeks, table.bibliographies{
       width: 3000px;
     }
   </style>
   @if( count($course) == 1 )
-  <div class="row medium-centered">
+  <div class="cell">
     <h5>Docente</h5>
     <p><b>Nombres:</b> {{$course->teacher->name}}</p>
     <p><b>Apellidos:</b> {{$course->teacher->last_name}}</p>
-    <hr>
-    <h5>Semanas <small><a class="button" href="/weeks/create/{{$course->id}}"><i class="fa fa-plus"></i> Agregar</a></small></h5>
+    
+    <h5>Semanas <small><a class="button" href="#"><i class="fa fa-plus"></i> Agregar</a></small></h5>
     <div class="table-scroll">
       <table class="weeks">
         <thead>
@@ -49,8 +52,8 @@
         </tbody>
       </table>
     </div>
-    <hr>
-    <h5>Bibliografía <small><a class="button" href="/bibliographies/create/{{$course->id}}"><i class="fa fa-plus"></i> Agregar</a></small></h5>
+    
+    <h5>Bibliografía <small><a class="button" href="#"><i class="fa fa-plus"></i> Agregar</a></small></h5>
     <div class="table-scroll">
       <table class="bibliographies">
         <thead>
