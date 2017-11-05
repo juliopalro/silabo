@@ -12,5 +12,12 @@
 */
 
 Route::get('/', function () {
-    return view('index');
+    return view('web/index');
 });
+Route::resource('teachers', 'web\TeacherController');
+Route::get('courses/create/{id}', 'web\CourseController@create');
+Route::resource('courses', 'web\CourseController');
+Route::get('courses/{id}/silabo', 'web\CourseController@showSilabo');
+Route::resource('bibliographies', 'web\BibliographyController');
+Route::resource('weeks', 'web\WeekController');
+Route::resource('contents', 'web\ContentController');
