@@ -15,7 +15,7 @@ class TeacherController extends Controller
      */
     public function index()
     {
-        $data['teachers'] = Teacher::orderBy('id','desc')->get();
+        $data['teachers'] = Teacher::orderBy('id','desc')->with('courses')->get();
 
         return view('web/teacher/index', $data);
     }
@@ -84,7 +84,7 @@ class TeacherController extends Controller
         $data = Teacher::find($id);
         $data->fill($request->all());
         if( $data->save() ){
-            return redirect('teachers/');
+            return redirect('teachers/'.$id);
         }
         else{
             return 'Error en la actualización';
