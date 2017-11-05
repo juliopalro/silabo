@@ -2,11 +2,13 @@
 
 var gulp = require('gulp');
 var concat = require('gulp-concat');
-var sass = require('gulp-sass');
-var ts = require('gulp-typescript');
-var runSequence = require('run-sequence');
-var minify = require('gulp-minify');
+var cssmin = require('gulp-cssmin');// min CSS
 var rename = require('gulp-rename');
+var sass = require('gulp-sass');
+var sequence = require('gulp-sequence');
+var uglify = require('gulp-uglify');// min JS
+
+
 
 // task for sass
 gulp.task('sass', function(){
