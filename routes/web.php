@@ -21,3 +21,10 @@ Route::get('courses/{id}/silabo', 'web\CourseController@showSilabo');
 Route::resource('bibliographies', 'web\BibliographyController');
 Route::resource('weeks', 'web\WeekController');
 Route::resource('contents', 'web\ContentController');
+
+// ruta de prueba para la configuración
+Route::prefix('admin')->group(function () {
+    Route::get('/', function () {
+        return view('vuejs');
+    });
+});
