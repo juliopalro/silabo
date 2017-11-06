@@ -5,80 +5,88 @@ var concat = require('gulp-concat');
 var cssmin = require('gulp-cssmin');// min CSS
 var rename = require('gulp-rename');
 var sass = require('gulp-sass');
-var sequence = require('gulp-sequence');
+var runSequence = require('run-sequence');
 var uglify = require('gulp-uglify');// min JS
+var gulpCopy = require('gulp-copy');
+var deletComents = require('gulp-strip-css-comments');
 
 
 
-// task for sass
-gulp.task('sass', function(){
-  return gulp.src('./resources/assets/sass/app.sass')
+/*
+* Tasks
+*/
+gulp.task('app-sass', function(){
+  return gulp.src('./resources/assets/sass/app.scss')
     .pipe(sass())
-    .pipe(gulp.dest('./public/css'));
+    .pipe(cssmin())
+    .pipe(rename('app.css'))
+    .pipe(gulp.dest('./public/assets/css'));
 });
-
-// task for js
-gulp.task("js", function(){
-  return gulp.src('./resources/assets/js/*.js')
-  .pipe(minify())
-  .pipe(rename('bundle.js'))
-  .pipe(gulp.dest('./public/js'));
-});
-
-// copy of libraries fro the proyect angular
-gulp.task("copy-libraries", function(){
+gulp.task('bundle-css', function(){
   return gulp.src([
-      'core-js/client/**',
-      'systemjs/dist/system.src.js',
-      'reflect-metadata/**',
-      'rxjs/**',
-      'zone.js/dist/**',
-      '@angular/**',
-      'jquery/dist/jquery.*js',
-      'bootstrap/dist/js/bootstrap.*js',
-      '@angular2-material/**/*',
-      'primeng/**/**/*',
-      'angular-search-list/*',
-      'chart.js/dist/*',
-      '!/**/*.ts'
-    ],
-    {cwd: "node_modules/**"})
-  .pipe(gulp.dest('./public/libraries'));
+    './resources/assets/css/foundation.min.css', 
+    './resources/assets/css/font-awesome.min.css'])
+    .pipe(concat('bundle.css'))
+    .pipe(cssmin())
+    .pipe(rename('bundle.css'))
+    .pipe(gulp.dest('./public/assets/css'));
 });
 
-// copy all html of angular
-gulp.task("copy-html", function(){
-  return gulp.src('./resources/app/**/*.html')
-  .pipe(gulp.dest('./public/app'));
+gulp.task('app-js', function(){
+  return gulp.src('./resources/assets/js/app.js')
+    .pipe(uglify())
+    .pipe(rename('app.js'))
+    .pipe(gulp.dest('./public/assets/js'));
+});
+gulp.task('bundle-js', function(){
+  return gulp.src([
+      './resources/assets/js/jquery.js',
+      './resources/assets/js/foundation.min.js',
+      './resources/assets/js/vue.js',
+      './resources/assets/js/vue-router.js',
+      './resources/assets/js/axios.js'
+    ])
+    .pipe(concat('bundle.js'))
+    .pipe(uglify())
+    .pipe(rename('bundle.js'))
+    .pipe(gulp.dest('./public/assets/js'));
 });
 
-// compile typescript
-gulp.task('tsc-js', function(){
-  return gulp.src('./resources/app/**/*.ts')
-    .pipe(ts())
-    .pipe(gulp.dest('./public/app'));
+/*
+* task for copy files
+ */
+gulp.task("copyFonts", function(){
+  return gulp.src('./resources/assets/fonts/*.*')
+  .pipe(gulp.dest('./public/assets/fonts'));
+});
+gulp.task("copyVueComponent", function(){
+  return gulp.src('./resources/assets/js/components/*.vue')
+  .pipe(gulp.dest('./public/assets/js/components'));
 });
 
-// Watchers
-gulp.task('sass:watch', function () {
-  gulp.watch('./resources/assets/sass/*.sass', ['sass']);
+/**
+ * Watchers
+*/
+gulp.task('app-sass:watch', function () {
+  gulp.watch('resources/assets/sass/*.scss', {cwd: './'}, ['app-sass']);
 });
-gulp.task('js:watch', function () {
-  gulp.watch('./resources/assets/js/*.js', ['js']);
+gulp.task('app-js:watch', function () {
+  gulp.watch('resources/assets/js/app.js', {cwd: './'}, ['app-js']);
 });
-gulp.task('copy-html:watch', function () {
-  gulp.watch('resources/app/**/*.html',{cwd: './'}, ['copy-html']);
+gulp.task('vueComponent:watch', function () {
+  gulp.watch('resources/assets/js/components/*.vue', {cwd: './'}, ['copyVueComponent']);
 });
-gulp.task('tsc-js:watch', function () {
-  gulp.watch('resources/app/**/*.ts',{cwd: './'}, ['tsc-js']);
-});
-gulp.task('watch', function () {
-  gulp.watch('./resources/assets/sass/*.sass', ['sass']);
-  gulp.watch('./resources/assets/js/*.js', ['js']);
-  gulp.watch('resources/app/**/*.html',{cwd: './'}, ['copy-html']);
-  gulp.watch('resources/app/**/*.ts',{cwd: './'}, ['tsc-js']);
-});
-// Sequience Tasks
-gulp.task('start', function (cb) {
-    runSequence('copy-libraries', 'tsc-js', 'copy-html', 'js', 'sass', cb);
+
+/**
+ * Sequience Tasks
+*/
+gulp.task('build', function (callback) {
+    runSequence( 
+      'app-js', 
+      'bundle-js', 
+      'app-sass', 
+      'bundle-css', 
+      'copyFonts', 
+      'copyVueComponent', 
+      callback);
 });

@@ -1,19 +1,36 @@
 {
-  "name": "silabo",
-  "version": "0.0.1",
+  "name": "Silabo",
+  "version": "1.0.0",
   "owner": "UPLA - Ing. de Sistemas y computación",
+  "author": "@juliopalro",
+  "description": "Con la ayuda de Laravel 5.5 se desarrollara un proyecto para realizar un administrador de silabus el mismo que se presentara en el taller de diseño web, de la universidad de UPLA.",
   "scripts": {
-    "start": "node_modules/.bin/gulp start",
-    "watch": "node_modules/.bin/gulp watch"
+    "build": "gulp build",
+    "watch:sass": "gulp app-sass:watch",
+    "watch:js": "gulp app-js:watch",
+    "watch:copyVueComponent": "gulp copyVueComponent:watch",
+    "developer": "concurrently \"npm run watch:js\" \"npm run watch:sass\" \"npm run watch:copyVueComponent\""
   },
-  "license": "MIT",
-  "dependencies": {
-    "gulp": "3.9.1",
-    "gulp-concat": "2.6.1",
-    "gulp-cssmin": "0.2.0",
-    "gulp-rename": "1.2.2",
-    "gulp-sass": "3.1.0",
-    "gulp-sequence": "0.4.6",
-    "gulp-uglify": "3.0.0"
-  }
+  "license": "ISC",
+  "dependencies": {},
+  "devDependencies": {
+    "concurrently": "^3.3.0",
+    "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.1",
+    "gulp-copy": "^1.0.1",
+    "gulp-cssmin": "^0.2.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^3.1.0",
+    "gulp-uglify": "^3.0.0",
+    "run-sequence": "^2.2.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/juliopalro/silabo.git"
+  },
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/juliopalro/silabo/issues"
+  },
+  "homepage": "https://github.com/juliopalro/silabo#readme"
 }
