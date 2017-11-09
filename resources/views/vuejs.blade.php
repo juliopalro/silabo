@@ -10,7 +10,14 @@
     <link rel="stylesheet" href="{{ asset('assets/css/app.css') }}">
 </head>
 <body>
-    <div id="app"></div>
+    <div id="app">
+      <teachers-list></teachers-list>
+      
+      <router-link to="/foo">Go to Foo</router-link>
+      <router-link to="/bar">Go to Bar</router-link>
+
+      <router-view></router-view>
+    </div>
 
     <script src="{{ asset('assets/js/bundle.js') }}"></script>
     <script src="{{ asset('assets/js/app.js') }}"></script>

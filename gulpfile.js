@@ -9,8 +9,9 @@ var runSequence = require('run-sequence');
 var uglify = require('gulp-uglify');// min JS
 var gulpCopy = require('gulp-copy');
 var deletComents = require('gulp-strip-css-comments');
-
-
+var vueify = require('gulp-vueify');
+const babel = require('gulp-babel');
+const webpack = require('webpack-stream');
 
 /*
 * Tasks
@@ -33,7 +34,14 @@ gulp.task('bundle-css', function(){
 });
 
 gulp.task('app-js', function(){
-  return gulp.src('./resources/assets/js/app.js')
+  return gulp.src([
+    "./resources/assets/js/components/*.js", 
+    "./resources/assets/js/app.routes.js", 
+    "./resources/assets/js/app.js"])
+    .pipe(concat('app.js'))
+    .pipe(babel({
+            presets: ['env']
+        }))
     .pipe(uglify())
     .pipe(rename('app.js'))
     .pipe(gulp.dest('./public/assets/js'));
@@ -59,22 +67,16 @@ gulp.task("copyFonts", function(){
   return gulp.src('./resources/assets/fonts/*.*')
   .pipe(gulp.dest('./public/assets/fonts'));
 });
-gulp.task("copyVueComponent", function(){
-  return gulp.src('./resources/assets/js/components/*.vue')
-  .pipe(gulp.dest('./public/assets/js/components'));
-});
+
 
 /**
  * Watchers
 */
 gulp.task('app-sass:watch', function () {
-  gulp.watch('resources/assets/sass/*.scss', {cwd: './'}, ['app-sass']);
+  gulp.watch('./resources/assets/sass/*.scss', ['app-sass']);
 });
 gulp.task('app-js:watch', function () {
-  gulp.watch('resources/assets/js/app.js', {cwd: './'}, ['app-js']);
-});
-gulp.task('vueComponent:watch', function () {
-  gulp.watch('resources/assets/js/components/*.vue', {cwd: './'}, ['copyVueComponent']);
+  gulp.watch('./resources/assets/js/app.js', ['app-js']);
 });
 
 /**
@@ -86,7 +88,6 @@ gulp.task('build', function (callback) {
       'bundle-js', 
       'app-sass', 
       'bundle-css', 
-      'copyFonts', 
-      'copyVueComponent', 
+      'copyFonts',  
       callback);
 });
