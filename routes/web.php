@@ -11,16 +11,17 @@
 |
 */
 
-Route::get('/', function () {
-    return view('web/index');
-});
+Route::get('/', function () { return view('errors/404'); });
+
+/*
+Route::resource('/teachers', function () { return view('vuejs'); });
 Route::resource('teachers', 'web\TeacherController');
+
 Route::get('courses/create/{id}', 'web\CourseController@create');
 Route::resource('courses', 'web\CourseController');
 Route::get('courses/{id}/silabo', 'web\CourseController@showSilabo');
 Route::resource('bibliographies', 'web\BibliographyController');
 Route::resource('weeks', 'web\WeekController');
-Route::resource('contents', 'web\ContentController');
 
 // ruta de prueba para la configuración
 Route::prefix('admin')->group(function () {
@@ -28,3 +29,4 @@ Route::prefix('admin')->group(function () {
         return view('vuejs');
     });
 });
+*/

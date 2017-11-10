@@ -1,5 +1,5 @@
 Vue.component('app', {
-  template: '<div>{{ message }}</div>',
+  template: '<div></div>',
   data: function () {
     return {
       counter: 0,

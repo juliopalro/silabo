@@ -12,7 +12,7 @@ use Illuminate\Http\Request;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-
+/*
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
@@ -20,5 +20,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::group(['prefix' =>  'v1', 'middleware'  =>  'Cors'], function(){
     Route::resource('teachers', 'api\TeacherController');
 });
-
-
+*/
