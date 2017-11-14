@@ -11,11 +11,18 @@
 </head>
 <body>
     <div id="app">
-      
-      <router-link to="/">Home</router-link>
-      <router-link to="/teachers">Teachers</router-link>
-
-      <router-view></router-view>
+      <div class="grid-x">
+        <div class="cell">
+          <ul class="menu">
+            <li class="menu-text">Silabo</li>
+            <router-link exact-active-class="active" tag="li" to="/"><a>Home</a></router-link>
+            <router-link exact-active-class="active" tag="li" to="/teachers"><a>Teachers</a></router-link>
+          </ul>
+        </div>
+        <div class="cell padding-2">
+          <router-view></router-view>
+        </div>
+      </div>
     </div>
 
     <script src="{{ asset('assets/js/bundle.js') }}"></script>

@@ -1,9 +1,9 @@
-const TeachersList = { template: '<teachers></teachers>' }
-const App = { template: '<app></app>' }
+const Teachers = { template: '<teachers></teachers>' }
+const Dashboard = { template: '<dashboard></dashboard>' }
 
 const routes = [
-  { path: '/', component: App },
-  { path: '/teachers', component: TeachersList }
+  { path: '/', component: Dashboard },
+  { path: '/teachers', component: Teachers }
 ]
 
 const router = new VueRouter({

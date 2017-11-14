@@ -39,10 +39,10 @@ gulp.task('app-js', function(){
     "./resources/assets/js/app.routes.js", 
     "./resources/assets/js/app.js"])
     .pipe(concat('app.js'))
-    .pipe(babel({
-            presets: ['env']
-        }))
-    .pipe(uglify())
+    //.pipe(babel({
+    //        presets: ['env']
+    //   }))
+    //.pipe(uglify())
     .pipe(rename('app.js'))
     .pipe(gulp.dest('./public/assets/js'));
 });
