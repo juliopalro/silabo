@@ -15,8 +15,7 @@ class TeacherController extends Controller
      */
     public function index()
     {
-        $data = Teacher::take(5)->orderBy('id','desc')->get();
-        #$data = Teacher::all();
+        $data = Teacher::take(5)->orderBy('id','desc')->with('courses')->get();
         return response()->json(['teachers' => $data]);
     }
 

@@ -76,7 +76,7 @@ gulp.task('app-sass:watch', function () {
   gulp.watch('./resources/assets/sass/*.scss', ['app-sass']);
 });
 gulp.task('app-js:watch', function () {
-  gulp.watch(['./resources/assets/js/components/*.js', './resources/assets/js/app.js'], ['app-js']);
+  gulp.watch('./resources/assets/js/**/*.js', ['app-js']);
 });
 
 /**
