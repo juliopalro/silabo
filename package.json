@@ -1,44 +1,22 @@
 {
-  "name": "Silabo",
-  "version": "1.0.0",
-  "owner": "UPLA - Ing. de Sistemas y computación",
-  "author": "@juliopalro",
-  "description": "Con la ayuda de Laravel 5.5 se desarrollara un proyecto para realizar un administrador de silabus el mismo que se presentara en el taller de diseño web, de la universidad de UPLA.",
+  "private": true,
   "scripts": {
-    "build": "gulp build",
-    "watch:sass": "gulp app-sass:watch",
-    "watch:js": "gulp app-js:watch",
-    "developer": "concurrently \"npm run watch:js\" \"npm run watch:sass\""
+    "dev": "npm run development",
+    "development": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "watch": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --watch --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "watch-poll": "npm run watch -- --watch-poll",
+    "hot": "cross-env NODE_ENV=development node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "prod": "npm run production",
+    "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
   },
-  "license": "ISC",
-  "dependencies": {},
   "devDependencies": {
-    "babel-core": "^6.26.0",
-    "babel-plugin-transform-runtime": "^6.23.0",
-    "babel-preset-env": "^1.6.1",
-    "babel-preset-es2015": "^6.24.1",
-    "concurrently": "^3.3.0",
-    "gulp": "^3.9.1",
-    "gulp-babel": "^7.0.0",
-    "gulp-concat": "^2.6.1",
-    "gulp-copy": "^1.0.1",
-    "gulp-cssmin": "^0.2.0",
-    "gulp-rename": "^1.2.2",
-    "gulp-sass": "^3.1.0",
-    "gulp-strip-css-comments": "^1.2.0",
-    "gulp-uglify": "^3.0.0",
-    "gulp-vueify": "0.0.3",
-    "run-sequence": "^2.2.0",
-    "vueify-insert-css": "^1.0.0",
-    "webpack-stream": "^4.0.0"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/juliopalro/silabo.git"
-  },
-  "keywords": [],
-  "bugs": {
-    "url": "https://github.com/juliopalro/silabo/issues"
-  },
-  "homepage": "https://github.com/juliopalro/silabo#readme"
+    "axios": "^0.16.2",
+    "bootstrap-sass": "^3.3.7",
+    "cross-env": "^5.0.1",
+    "jquery": "^3.1.1",
+    "laravel-mix": "^1.0",
+    "lodash": "^4.17.4",
+    "vue": "^2.1.10",
+    "vue-router": "^3.0.1"
+  }
 }
