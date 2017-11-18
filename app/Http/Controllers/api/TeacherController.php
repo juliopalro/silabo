@@ -37,7 +37,13 @@ class TeacherController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+        if( Teacher::create($data) ){
+            return redirect('teachers/');
+        }
+        else{
+            return 'Error en el registro';
+        }
     }
 
     /**
